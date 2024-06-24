@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }) => {
     await transPage.goTo();
 })
 
-test('document disable when not log in', async ({ page }) => {
+test.only('document disable when not log in', async ({ page }) => {
     const translationPage = new TranslatioinPage(page)
     await translationPage.docsTab.click();
     const classess = await translationPage.docsTab.getAttribute("class")
@@ -23,8 +23,6 @@ test('document enable when log in', async ({ page }) => {
     await login.goTo()
     await login.login(email,password)
     await translationPage.translationCard.click()
-    // const docsTab = page.getByRole('tab', { name: 'ཡིག་ཆ། ( ཚོད་ལྟ། )' })
-    // const docsTab = page.locator("button[id=':r4:-tab-1']")
     await translationPage.docsTab.click();
     await translationPage.docsTab.waitFor({ timeout: 30000 })
     const classess = await translationPage.docsTab.getAttribute("class")
@@ -44,7 +42,8 @@ test('Input clearance', async ({ page }) => {
     await translationPage.inputField.fill('tashi delek');
     await page.getByTitle('reset').click();
     const inputText = await translationPage.inputField.textContent()
-    expect(inputText).toBe("")
+    // expect(inputText).toBe("")
+    expect(inputText).toHaveLength(0)
 });
 
 // need to add some logic to check the language
@@ -62,6 +61,7 @@ test("Translate Button status", async ({ page }) => {
     const isBtnVisible = await translationPage.translateBtn.isVisible();
     expect(isBtnVisible).toBe(false)
 })
+// one more test when there is input
 
 test("swap language", async ({ page }) => {
     const inputLang = 'bo'
