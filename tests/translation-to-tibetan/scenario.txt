@@ -1,0 +1,16 @@
+- Without Login - text available but not document
+- with login - both text and document available
+- Auto detect - input text language detection
+- Input clearance.
+- Input edge case - space, more than 1000 char
+- Translate button - disable when no input text
+- Translation of different language - english, hindi, french, chinese
+- Audio 
+- input text vs selected language
+- Edit, thumbs up, thumbs down,copy , share.
+- Edit - submit and cancel button
+- Switch the translation - input text and output text
+- 
+
+
+check with login vs without login features
