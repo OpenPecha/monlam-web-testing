@@ -20,7 +20,8 @@ module.exports = defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     browserName: 'chromium',
     headless: false,
-    screenshot:'on',
+    screenshot: 'on',
+    permissions: ["clipboard-read"], // to read clipboard to check copy functionality
     trace: 'on-first-retry',
   },
 

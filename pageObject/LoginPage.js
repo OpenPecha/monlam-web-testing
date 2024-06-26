@@ -5,6 +5,7 @@ class LoginPage {
         this.loginBtn = this.page.locator("#loginbtn").first()
         this.emailInput = this.page.getByPlaceholder('yours@example.com')
         this.passwordInput = this.page.getByPlaceholder('your password')
+        this.errorMsg = page.getByText('Wrong email or password.')
         this.profilePic = this.page.locator("#profilePic").first()
         this.logoutbtn = this.page.locator("#logoutbtn")
     }
