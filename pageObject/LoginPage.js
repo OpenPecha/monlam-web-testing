@@ -20,7 +20,7 @@ class LoginPage {
         await this.passwordInput.fill(password);
         await this.page.getByLabel('Log In').click();
         try {
-            await this.page.waitForNavigation({ timeout: 5000 });
+            await this.page.waitForNavigation({ timeout: 10000 });
         } catch (error) {
             console.log("didn't navigate so not able to login")
         }

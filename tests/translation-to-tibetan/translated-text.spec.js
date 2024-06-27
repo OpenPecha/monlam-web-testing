@@ -6,7 +6,6 @@ test("Edit output text", async ({ page }) => {
     const translationPage = new TranslationPage(page)
     await translationPage.goTo()
     const text = "how are you"
-    await page.pause()
     await translationPage.translateText(text)
     await translationPage.editBtn.click()
     const editBox = await translationPage.editOutputText
