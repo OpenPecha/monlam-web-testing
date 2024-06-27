@@ -2,26 +2,19 @@ import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
   await page.goto('http://localhost:3000/');
-  await page.locator('div').filter({ hasText: 'ཡིག་སྒྱུར་རིག་ནུས།དབྱིན་བོད་ཕན་ཚུན་ཡིག་སྒྱུར་བྱེད་ཐུབ།ཀློག་འདོན་རིག་ནུས།བོད་ཡིག་' }).nth(1).click({
+  await page.getByRole('link', { name: 'ཡིག་སྒྱུར་རིག་ནུས། དབྱིན་བོད་ཕན་ཚུན་ཡིག་སྒྱུར་བྱེད་ཐུབ།' }).click();
+  await page.getByPlaceholder('ཡི་གེ་གཏག་རོགས།').fill('hello');
+  await page.getByRole('button', { name: 'ཡིག་སྒྱུར།' }).click();
+  await page.locator('div').filter({ hasText: 'མདུན་ངོས།ཡིག་སྒྱུར་རིག་ནུས།ཡིག་རྐྱང་། ཡིག་ཆ། ( ཚོད་ལྟ། )Detect' }).nth(1).click({
     button: 'right'
   });
-  await page.getByRole('button', { name: 'ཐོ་ཞུགས།' }).click();
-  await page.getByPlaceholder('yours@example.com').click();
-  await page.getByPlaceholder('yours@example.com').fill('exampl@gmial.com');
-  await page.getByPlaceholder('your password').click();
-  await page.getByPlaceholder('your password').fill('hioo');
-  await page.getByLabel('Log In').click();
-  await page.getByText('Wrong email or password.').click();
-  await page.getByPlaceholder('yours@example.com').click();
-  await page.getByPlaceholder('yours@example.com').click();
-  await page.getByPlaceholder('yours@example.com').click();
-  await page.getByPlaceholder('yours@example.com').press('ArrowRight');
-  await page.getByPlaceholder('yours@example.com').fill('exampl@gmial.cm');
-  await page.getByPlaceholder('yours@example.com').press('ArrowRight');
-  await page.getByPlaceholder('yours@example.com').fill('');
-  await page.getByPlaceholder('your password').click();
-  await page.getByPlaceholder('your password').press('ArrowRight');
-  await page.getByPlaceholder('your password').fill('');
-  await page.getByLabel('Log In').click();
-  await page.getByPlaceholder('yours@example.com').click();
+  await page.locator('#shareBtn').getByRole('img').click();
+  await page.getByTestId('flowbite-dropdown').locator('#copyBtn').click();
+  const page1Promise = page.waitForEvent('popup');
+  await page.getByTestId('flowbite-dropdown').getByRole('button').nth(1).click();
+  const page1 = await page1Promise;
+  const page2Promise = page.waitForEvent('popup');
+  await page.getByTestId('flowbite-dropdown').getByRole('button').nth(2).click();
+  const page2 = await page2Promise;
+  await page.getByTestId('flowbite-dropdown').getByRole('button').nth(3).click();
 });

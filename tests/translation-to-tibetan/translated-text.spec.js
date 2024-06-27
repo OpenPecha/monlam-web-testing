@@ -46,6 +46,21 @@ test('Check the copy functionality', async ({ page }) => {
 
 });
 
-test.only("Audio check", async ({ page }) => {
-    
+test("Audio check", async ({ page }) => {
+    const translationPage = new TranslationPage(page)
+    await translationPage.goTo()
+    const text = "how are you"
+    await page.pause()
+    await translationPage.translateText(text)
+    await translationPage.playOutputAudio.click()
+    const audioElement = translationPage.outputAudio;
+    const audioSource = await audioElement.getAttribute('src');
+    expect(audioSource).not.toBeNull();
+
+    // Check if the audio is playing
+    const isPlaying = await page.evaluate(() => {
+        const audio = document.querySelector('#outputAudio');
+        return audio && !audio.paused;
+    });
+    expect(isPlaying).toBe(true);
 })
