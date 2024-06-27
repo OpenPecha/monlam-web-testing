@@ -1,11 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { TranslatioinPage } from '../../pageObject/translationPage';
+import { TranslationPage } from '../../pageObject/translationPage';
 import { LoginPage } from '../../pageObject/LoginPage';
 
-const writeInput = async (page, text, language) => {
-    const translationPage = new TranslatioinPage(page)
+export const DetectInputLang = async (page, text, language) => {
+    const translationPage = new TranslationPage(page)
     await translationPage.goTo()
-    const initialValue = await translationPage.languageInputDropDown.evaluate(select => select.value);
     await translationPage.inputField.fill(text)
     await page.waitForTimeout(3000);
     const detectedLang = await translationPage.languageInputDropDown.evaluate(select => select.value)
@@ -13,20 +12,20 @@ const writeInput = async (page, text, language) => {
 }
 
 test("English Test", async ({ page }) => {
-    await writeInput(page, "how are you", "en");
+    await DetectInputLang(page, "how are you", "en");
 });
 
 test("Tibetan Test", async ({ page }) => {
-    await writeInput(page, "ཁྱེད་རང་ག་འདྲ་ཡིན་པ།", "bo");
+    await DetectInputLang(page, "ཁྱེད་རང་ག་འདྲ་ཡིན་པ།", "bo");
 });
 
 test("French Test", async ({ page }) => {
-    await writeInput(page, "comment ça va", "fr");
+    await DetectInputLang(page, "comment ça va", "fr");
 });
 test("Hindi Test", async ({ page }) => {
-    await writeInput(page, "आप कैसे हैं", "hi");
+    await DetectInputLang(page, "आप कैसे हैं", "hi");
 });
 
 test("Chinese Test", async ({ page }) => {
-    await writeInput(page, "你好吗", "zh");
+    await DetectInputLang(page, "你好吗", "zh");
 });

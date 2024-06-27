@@ -5,6 +5,7 @@ class LoginPage {
         this.loginBtn = this.page.locator("#loginbtn").first()
         this.emailInput = this.page.getByPlaceholder('yours@example.com')
         this.passwordInput = this.page.getByPlaceholder('your password')
+        this.errorMsg = page.getByText('Wrong email or password.')
         this.profilePic = this.page.locator("#profilePic").first()
         this.logoutbtn = this.page.locator("#logoutbtn")
     }
@@ -19,7 +20,7 @@ class LoginPage {
         await this.passwordInput.fill(password);
         await this.page.getByLabel('Log In').click();
         try {
-            await this.page.waitForNavigation({ timeout: 5000 });
+            await this.page.waitForNavigation({ timeout: 10000 });
         } catch (error) {
             console.log("didn't navigate so not able to login")
         }
