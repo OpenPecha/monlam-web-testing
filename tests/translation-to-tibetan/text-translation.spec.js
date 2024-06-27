@@ -87,5 +87,3 @@ test("Word more than 1000", async ({ page }) => {
     expect(isBtnDisabled).toBe(true)
     
 })
-
-test.only("translate text",)

@@ -12,13 +12,16 @@ class TranslationPage {
         this.languageInputDropDown = this.page.getByRole('combobox').first()
         this.languageOutputDropDown = this.page.getByRole('combobox').nth(1)
         this.languageSwitchBtn = this.page.getByTestId('flowbite-tooltip-target').getByRole('button')
-        this.audioBtn = this.page.locator("#audioBtn")
+        this.playOutputAudio = this.page.locator("#playOutputAudio")
+        this.pauseOuputAudio = this.page.locator("#pauseOuputAudio")
+        this.outputAudio = this.page.locator("#outputAudio")
         this.editBtn = this.page.locator("#editBtn")
         this.saveEdit = this.page.locator("#saveEdit")
         this.cancelEdit = this.page.locator("#cancelEdit")
         this.likeBtn = this.page.locator("#likeBtn")
         this.dislikeBtn = this.page.locator("#dislikeBtn")
         this.copyBtn = this.page.locator("#copyBtn")
+        this.shareBtn = this.page.locator("#shareBtn")
         this.editOutputText = this.page.locator("#editOutputText")
     }
 
